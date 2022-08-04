@@ -1,0 +1,101 @@
+<div class="a">
+<h1 class="title">Filters Cat</h1>
+<div>
+  <form [formGroup]="contactForm" (ngSubmit)="submitBreed()" class=" form0">
+ 
+    <p>
+     
+      <select formControlName="catBreed" class="select">
+        <option [ngValue]="null" disabled>Выберите категорию</option>
+        <option *ngFor="let item of CatArr" [ngValue]="item.name">{{item.name}}</option>
+      </select> 
+      <button type="submit" class="btn"><h4>Выбрать</h4></button>
+    </p>
+     
+    </form>
+<div > 
+  <div>
+    <form [formGroup]="contactForm2" (ngSubmit)="sort()" class=" form0">
+   
+      <p>
+       
+        <select formControlName="sort" class="select">
+          <option [ngValue]="null" disabled>Сортировать по</option>
+          <option *ngFor="let item of sortArr" [ngValue]="item.name">{{item.name}}</option>
+        </select> 
+        <button type="submit" class="btn"><h4>Выбрать</h4></button>
+      </p>
+       
+      </form>
+  <div > 
+    <div>
+      <form [formGroup]="contactForm3" (ngSubmit)="take()" class=" form0">
+     
+        <p>
+         
+          <select formControlName="value" class="select">
+            <option [ngValue]="null" disabled>Взять первые:</option>
+            <option *ngFor="let item of TakeArr" [ngValue]="item.name">{{item.name}}</option>
+          </select> 
+          <button type="submit" class="btn"><h4>Взять елементы</h4></button>
+        </p>
+         
+        </form>
+    <div > 
+  <button (click)="ChangeFlag()" class="btn"><h3>Add Cat</h3></button>
+</div>
+</div>
+
+
+<div  *ngIf ="!flag " class="form"> 
+  <div>
+    <form  [formGroup]="myform" (ngSubmit)="Submit(myform)" class="ui-form">
+      
+      <div class="form-row"> 
+          <input type="text" required formControlName ="name" value="name">
+      </div>
+      <div class="form-row">
+       <input type="text" required formControlName ="info" value="info">
+      </div>
+      <div class="form-row"><input  type="text" required formControlName="url" value="url">
+       <br>
+      </div>
+      <div class="form-row">
+       <input type="number"  required formControlName="age" value="age">
+       <br></div>
+       <div class="form-row"> 
+          <input type="text" required formControlName ="bread" value="bread">
+      </div>
+       <div class="form-row">
+       <input type="submit" [disabled]="myform.invalid" class="btn"></div>
+       <div *ngIf="myform.invalid" color="red"><h3 style="text-align:center;color: red;">Введите правильно данные!!!</h3>
+          </div>
+     
+   </form>
+  </div>
+</div>
+</div>
+
+<div class="main">
+<div class="post">
+<div *ngFor ="let cat of cats" class="wrap">
+      <div class="post-title"> Имя : {{cat.name}}</div>
+      <div class="content">
+      <div class="post-content"> Информация:  {{cat.info}}</div>
+      <div class="post-content"> Возраст:  {{cat.age}}</div>
+      <div class="post-content"> Порода:  {{cat.breed}}</div>
+      </div>
+        <img src="{{cat.url}}" alt="Котик" class="imgg">
+          <div (click)="Delete(cat.id)"  class="upDelete">
+            <svg   xmlns="http://www.w3.org/2000/svg" width="80" height="50" fill="currentColor" class="svg" viewBox="0 0 16 16">
+             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+          </div>
+</div>
+</div>
+</div>
+
+
+
+ 
+
